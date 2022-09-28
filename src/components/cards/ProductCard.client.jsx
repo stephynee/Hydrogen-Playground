@@ -35,7 +35,7 @@ export function ProductCard({product, label, className, loading, onClick}) {
   return (
     <Link onClick={onClick} to={`/products/${product.handle}`}>
       <div className={styles}>
-        <div className="card-image aspect-[4/5] bg-primary/5">
+        <div className="card-image aspect-[2/3] bg-primary/5">
           <Text
             as="label"
             size="fine"
@@ -49,7 +49,6 @@ export function ProductCard({product, label, className, loading, onClick}) {
               widths={[320]}
               sizes="320px"
               loaderOptions={{
-                crop: 'center',
                 scale: 2,
                 width: 320,
                 height: 400,

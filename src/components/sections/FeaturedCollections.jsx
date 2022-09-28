@@ -19,7 +19,7 @@ export function FeaturedCollections({data, title = 'Collections', ...props}) {
           return (
             <Link key={collection.id} to={`/collections/${collection.handle}`}>
               <div className="grid gap-4">
-                <div className="card-image bg-primary/5 aspect-[3/2]">
+                <div className="card-image bg-primary/5 aspect-[2/3]">
                   {collection?.image && (
                     <Image
                       alt={`Image of ${collection.title}`}
@@ -27,7 +27,6 @@ export function FeaturedCollections({data, title = 'Collections', ...props}) {
                       height={400}
                       sizes="(max-width: 32em) 100vw, 33vw"
                       width={600}
-                      widths={[400, 500, 600, 700, 800, 900]}
                       loaderOptions={{
                         scale: 2,
                         crop: 'center',

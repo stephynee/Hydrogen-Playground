@@ -66,6 +66,9 @@ module.exports = {
         darkHeader: 'inset 0px -1px 0px 0px rgba(21, 21, 21, 0.4)',
         lightHeader: 'inset 0px -1px 0px 0px rgba(21, 21, 21, 0.05)',
       },
+      aspectRatio: {
+        '2/3': '2/3',
+      }
     },
   },
   // eslint-disable-next-line node/no-unpublished-require

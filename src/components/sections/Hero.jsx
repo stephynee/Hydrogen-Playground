@@ -14,7 +14,7 @@ export function Hero({
   top,
 }) {
   return (
-    <Link to={`/collections/${handle}`}>
+    <Link to={`/collections/${handle?.value}`}>
       <section
         className={`relative justify-end flex flex-col w-full ${
           top && '-mt-nav'
@@ -42,16 +42,6 @@ export function Hero({
                 width={spreadSecondary?.reference ? 375 : 750}
                 data={spread.reference}
                 loading={loading}
-              />
-            </div>
-          )}
-          {spreadSecondary?.reference && (
-            <div className="hidden md:block">
-              <SpreadMedia
-                sizes="(min-width: 80em) 700, (min-width: 48em) 450, 500"
-                widths={[450, 700]}
-                width={375}
-                data={spreadSecondary.reference}
               />
             </div>
           )}

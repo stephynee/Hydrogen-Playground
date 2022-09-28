@@ -48,20 +48,18 @@ function HomepageContent() {
     preload: true,
   });
 
-  const {heroBanners, featuredCollections, featuredProducts} = data;
+  const {featuredCollections, featuredProducts, homepageHero, secondaryHero, featuredProducts2} = data;
 
-  // fill in the hero banners with placeholders if they're missing
-  const [primaryHero, secondaryHero, tertiaryHero] = getHeroPlaceholder(
-    heroBanners.nodes,
-  );
+  console.log('featured products: ', featuredProducts);
+  console.log('featured products: ', featuredProducts2)
 
   return (
     <>
-      {primaryHero && (
-        <Hero {...primaryHero} height="full" top loading="eager" />
+      {homepageHero && (
+        <Hero {...homepageHero} />
       )}
       <ProductSwimlane
-        data={featuredProducts.nodes}
+        data={featuredProducts.products.nodes}
         title="Featured Products"
         divider="bottom"
       />
@@ -70,7 +68,6 @@ function HomepageContent() {
         data={featuredCollections.nodes}
         title="Collections"
       />
-      {tertiaryHero && <Hero {...tertiaryHero} />}
     </>
   );
 }
@@ -165,9 +162,67 @@ const HOMEPAGE_CONTENT_QUERY = gql`
         }
       }
     }
-    featuredProducts: products(first: 12) {
-      nodes {
-        ...ProductCard
+    featuredProducts: collection(handle:"featured") {
+      products(first: 5) {
+        nodes {
+          ...ProductCard
+        }
+      }
+    }
+    homepageHero: shop {
+      spread: metafield(namespace: "homepage", key: "main_hero") {
+        reference {
+          ... on MediaImage {
+            mediaContentType
+            alt
+            image {
+              url
+              width
+              height
+            }
+            previewImage {
+              url
+            }
+            id
+          }
+        }
+      }
+      heading: metafield(namespace: "homepage", key: "main_hero_heading") {
+        value
+      }
+      cta: metafield(namespace: "homepage", key: "main_hero_cta") {
+        value
+      }
+      handle: metafield(namespace: "homepage", key: "main_hero_handle") {
+        value
+      }
+    }
+    secondaryHero: shop {
+      spread: metafield(namespace: "homepage", key: "secondary_hero") {
+        reference {
+          ... on MediaImage {
+            mediaContentType
+            alt
+            image {
+              url
+              width
+              height
+            }
+            previewImage {
+              url
+            }
+            id
+          }
+        }
+      }
+      heading: metafield(namespace: "homepage", key: "secondary_hero_heading") {
+        value
+      }
+      cta: metafield(namespace: "homepage", key: "secondary_hero_cta") {
+        value
+      }
+      handle: metafield(namespace: "homepage", key: "secondary_hero_handle") {
+        value
       }
     }
   }
